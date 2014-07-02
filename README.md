@@ -1,4 +1,3 @@
-instagram-button
-================
+# &lt;github-card&gt;
 
-WebComponent to Instagram follow button using Polymer
+> Web component to show a card of your profile in Instagram using Polymer.
