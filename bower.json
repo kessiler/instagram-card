@@ -1,0 +1,20 @@
+{
+    "name": "instagram-card",
+    "version": "0.0.1",
+    "description": "Web component to show a card of your profile in Instagram using Polymer.",
+    "license": "MIT",
+    "main": "dist/instagram-card.html",
+    "keywords": [
+        "polymer",
+        "web-components",
+        "instagram"
+    ],
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components"
+    ],
+    "dependencies": {
+        "polymer": "Polymer/polymer#~0.3.3"
+    }
+}
