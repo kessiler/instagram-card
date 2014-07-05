@@ -1,0 +1,32 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/polymer-jsonp/polymer-jsonp.html">
+
+<polymer-element name="instagram-card" attributes="clientId accessToken">
+
+	<template>
+		<polymer-jsonp id="instagram" auto url="https://api.instagram.com/v1/users/{{clientId}}/?access_token={{accessToken}}&callback="></polymer-jsonp>
+		<span>{{profile.full_name}}</span>
+		<span>{{profile.bio}}</span>
+		<span>{{profile.profile_picture}}</span>
+		<span>{{profile.counts.media}}</span>
+		<span>{{profile.counts.followed_by}}</span>
+		<span>{{profile.counts.follows}}</span>
+	</template>
+
+	<script>
+		Polymer('instagram-card', {
+			profile: {},
+			clientId: '39040169',
+			// @todo Is used by default my access token, the ideal is for you to change your token
+			accessToken: '39040169.f59def8.219f3923300a4b0aa8dcb88ec3964ea2',
+			ready: function() {
+				this.$.instagram.addEventListener('polymer-response',
+          			function (params) {
+            			this.profile = params.detail.response.data;
+          			}.bind(this)
+        		);
+			}
+		});
+	</script>
+
+</polymer-element>
