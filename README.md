@@ -8,7 +8,7 @@
 ## Demo
 
 
-> @Note : Data can not be displayed, because Instagram has a limit of 30 requests per hour.
+> @NOTE : Data can not be displayed, because Instagram has a limit of 5000 requests per hour.
 
 [Check it live!](http://kessiler.github.io/instagram-card)
 
@@ -49,6 +49,8 @@ Attribute     | Options     | Default             | Description
 ---           | ---         | ---                 | ---
 `clientId`    | *string*    | `39040169`  		  | your id from instagram.
 `accessToken` | *string*    | `39040169.f59def8.219f3923300a4b0aa8dcb88ec3964ea2` | key token of your user.
+
+> @NOTE: If you do not know your clientId, you can search it [HERE!](http://jelled.com/instagram/lookup-user-id)
 
 
 ## Development
