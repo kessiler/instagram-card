@@ -1,0 +1,107 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../polymer-jsonp/polymer-jsonp.html">
+
+<polymer-element name="instagram-card" attributes="clientId accessToken">
+
+	<template>
+		<style>
+			.instaWidget {
+				width:325px;
+				text-align:center;
+				background-color:#ecf0f1;
+				border-radius:15px;
+				font-family:Helvetica;
+				line-height:15px;
+				box-shadow:2px 2px 5px rgba(0,0,0,.7);
+			}
+			.instaWidget .picture {
+				padding-top:10px;
+			}
+			.instaWidget .picture img {
+				width:150px;
+				border-radius:50%;
+				margin-top:5px;
+				border:8px solid white;
+			}
+			.instaWidget .info p {
+				color:#7f8c8d;
+				font-weight:600;
+				font-size:.9em;
+			}
+			
+			.instaWidget .info p a {
+				color:#bdc3c7
+			}
+
+			.instaWidget .info a {
+				text-decoration:none;
+				color:#7f8c8d;
+			}
+			.instaWidget .info a:hover {
+				color:#484949;
+			}
+			.instaWidget .info .data {
+				height:45px;
+				color:#81878b;
+			}
+			.instaWidget .info .data li {
+				width:32%;
+				display:inline-block;
+				font-size:1.3em;
+				border-right:solid 1px #bdc3c7;
+			}
+			.instaWidget .info .data li span {
+				display:block;
+				text-transform:uppercase;
+				font-size:.5em;
+				margin-top:.5em;
+			}
+			.instaWidget .info .data li:last-child {
+				border: none;
+			}
+		</style>
+		<polymer-jsonp id="instagram" auto url="https://api.instagram.com/v1/users/{{clientId}}/?access_token={{accessToken}}&callback="></polymer-jsonp>
+
+		<aside class="instaWidget">
+	  		<div class="picture">
+	    		<img src="{{profile.profile_picture}}" />
+	  		</div>
+	  		<div class="info">
+	    		<p>{{profile.full_name}} <a href="http://instagram.com/{{profile.username}}">@{{profile.username}}</a></p>
+	    		<template if="{{ !!profile.bio }}">
+	    			<p>{{profile.bio}}</p>    
+	    		</template>
+	    		<template if="{{ !!profile.website }}">
+	    			<p><a href="{{profile.website}}">{{profile.website | sliced(7)}}</p>    
+	    		</template>
+	    		<div class="data">
+					<ul>
+						<li>{{profile.counts.media}}<span>Posts</span></li>
+						<li>{{profile.counts.followed_by}}<span>Followers</span></li>
+						<li>{{profile.counts.follows}}<span>Following</span></li>
+					</ul>
+				</div>
+	  		</div>
+	  	</aside>
+	</template>
+
+	<script>
+		Polymer('instagram-card', {
+			profile: {},
+			clientId: '39040169',
+			// @todo Is used by default my access token, the ideal is for you to change your token
+			accessToken: '39040169.f59def8.219f3923300a4b0aa8dcb88ec3964ea2',
+			ready: function() {
+				this.$.instagram.addEventListener('polymer-response',
+          			function (params) {
+            			this.profile = params.detail.response.data;
+          			}.bind(this)
+        		);
+			},
+			sliced : function(value, size) {
+				return value.slice(size);
+			}
+		});
+	</script>
+
+</polymer-element>
