@@ -7,6 +7,7 @@
 
 ## Demo
 
+![Example](card-example.png)
 
 > @NOTE : Data can not be displayed, because Instagram has a limit of 5000 requests per hour.
 
